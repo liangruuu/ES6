@@ -20,7 +20,11 @@ app.use(express.urlencoded({
 }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+/**
+ * 一定要在app.use(express.static(path.join(__dirname, 'public')));这行之下
+ * connect-livereload：接收热更新
+ */
+app.usr(require('connect-livereload')())
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
